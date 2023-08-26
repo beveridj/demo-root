@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="beveridj" id="create-item" >
+        <createTable tableName="item">
+            <column name="item_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="item_pk"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+         </createTable>
+    </changeSet>
+    <changeSet author="beveridj" id="create-customer" >
+        <createTable tableName="customer">
+            <column name="customer_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="customer_pk"/>
+            </column>
+            <column name="first_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="beveridj" id="create-cart" >
+        <createTable tableName="cart">
+            <column name="cart_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="cart_pk"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="cart_customer_fk" references="customer(customer_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="beveridj" id="create-cart-item" >
+        <createTable tableName="cart_item">
+            <column name="cart_itm_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="cart_item_pk"/>
+            </column>
+            <column name="cart_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="cart_item_cart_fk" references="cart(cart_id)"/>
+            </column>
+            <column name="item_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="cart_item_item_fk" references="item(item_id)"/>
+            </column>
+            <column name="quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
