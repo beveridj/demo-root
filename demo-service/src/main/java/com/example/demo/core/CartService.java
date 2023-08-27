@@ -5,6 +5,7 @@ import com.example.demo.assembler.CartAssembler;
 import com.example.demo.core.data.Cart;
 import com.example.demo.core.data.CartRepository;
 import com.example.demo.core.exception.NotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,15 +13,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CartService {
 
     private final CartRepository repository;
     private final CartAssembler assembler;
-
-    public CartService(CartRepository aRepository, CartAssembler anAssembler) {
-        repository = aRepository;
-        assembler = anAssembler;
-    }
 
     public List<CartDto> findAll(){
         List<Cart> carts = repository.findAll();

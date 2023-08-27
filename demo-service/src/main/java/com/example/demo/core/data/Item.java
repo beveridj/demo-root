@@ -16,10 +16,13 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_generator")
     @SequenceGenerator(name = "sequence_generator", sequenceName = "item_id_seq", initialValue = 1, allocationSize = 1)
     private Long id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "price")
     private Double price;
 

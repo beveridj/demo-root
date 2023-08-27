@@ -9,6 +9,7 @@ import com.example.demo.core.data.CustomerRepository;
 import com.example.demo.core.data.Item;
 import com.example.demo.core.data.ItemRepository;
 import com.example.demo.core.exception.NotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,15 +17,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerService {
 
     private final CustomerRepository repository;
     private final CustomerAssembler assembler;
-
-    public CustomerService(CustomerRepository aRepository, CustomerAssembler anAssembler) {
-        repository = aRepository;
-        assembler = anAssembler;
-    }
 
     public List<CustomerDto> findAll(){
         List<Customer> customers = repository.findAll();

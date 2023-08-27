@@ -14,16 +14,20 @@ public class Customer {
     @Id
     @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_generator")
-    @SequenceGenerator(name = "sequence_generator", sequenceName = "customer_id_seq", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "sequence_generator", sequenceName = "customer_id_seq", allocationSize = 1)
     private Long id;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "address")
     private String address;
 
     public static Customer newInstance(){
         return new Customer();
     }
+
 }

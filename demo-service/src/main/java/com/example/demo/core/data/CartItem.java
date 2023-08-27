@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.springframework.context.annotation.Primary;
 
 @Entity
 @Table(name = "cart_item")
@@ -15,7 +14,7 @@ public class CartItem {
     @Id
     @Column(name = "cart_itm_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_generator")
-    @SequenceGenerator(name = "sequence_generator", sequenceName = "cart_item_id_seq", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name = "sequence_generator", sequenceName = "cart_item_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "cart_id")
@@ -38,5 +37,6 @@ public class CartItem {
     public static CartItem newInstance(){
         return new CartItem();
     }
+
 }
 

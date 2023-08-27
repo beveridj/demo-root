@@ -9,14 +9,25 @@ import java.util.stream.Collectors;
 @Component
 public class CartAssembler {
 
+    private final CustomerAssembler customerAssembler;
+    private final CartAssembler cartAssembler;
+    private final CartItemAssembler cartItemAssembler;
+
+    public CartAssembler(CustomerAssembler aCustomerAssembler, CartAssembler aCartAssembler, CartItemAssembler aCartItemAssembler) {
+        customerAssembler = aCustomerAssembler;
+        cartAssembler = aCartAssembler;
+        cartItemAssembler = aCartItemAssembler;
+    }
+
     public CartDto assemble(Cart entity) {
         return new CartDto()
                 .setId(entity.getId())
                 .setCustomerId(entity.getCustomerId())
-                .setCustomer(new CustomerAssembler().assemble(entity.getCustomer()))
+                .setCustomer(customerAssembler.assemble(entity.getCustomer()))
                 .setCartItems(entity.getCartItems().stream()
-                             .map(new CartItemAssembler(new ItemAssembler())::assemble)
-                .collect(Collectors.toList()));
+                             .map(cartItemAssembler::assemble)
+                            .collect(Collectors.toList())
+                );
     }
 
     public Cart disassemble(CartDto dto) {

@@ -36,10 +36,11 @@ public class CartItemService {
                 .orElseThrow(NotFoundException::new);
     }
 
-    public CartItemDto create(CartItemDto anItem){
-        CartItem item = assembler.disassemble(anItem);
-        item = repository.save(item);
-        return assembler.assemble(item);
+//    TODO should cart item be an Optional because Item will be null on creation
+    public CartItemDto create(CartItemDto aCartItem){
+        CartItem cartItem = assembler.disassemble(aCartItem);
+        cartItem = repository.save(cartItem);
+        return assembler.assemble(cartItem);
     }
 
     public void delete(Long anId){

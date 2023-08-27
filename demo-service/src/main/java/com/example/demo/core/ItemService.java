@@ -5,6 +5,7 @@ import com.example.demo.assembler.ItemAssembler;
 import com.example.demo.core.data.Item;
 import com.example.demo.core.data.ItemRepository;
 import com.example.demo.core.exception.NotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +14,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ItemService {
 
     private final ItemRepository repository;
     private final ItemAssembler assembler;
-
-    public ItemService(ItemRepository aRepository, ItemAssembler anAssembler) {
-        repository = aRepository;
-        assembler = anAssembler;
-    }
 
     public List<ItemDto> findAll(){
         List<Item> items = repository.findAll();
