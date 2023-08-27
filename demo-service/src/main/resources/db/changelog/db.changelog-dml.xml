@@ -46,6 +46,22 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet author="beveridj" id="create-catalog" >
+        <createTable tableName="catalog">
+            <column name="catalog_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="catalog_pk"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
     <changeSet author="beveridj" id="create-cart-item" >
         <createTable tableName="cart_item">
             <column name="cart_itm_id" type="bigint">
