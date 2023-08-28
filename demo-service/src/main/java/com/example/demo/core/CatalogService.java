@@ -1,13 +1,10 @@
-package com.example.demo.core.exception;
+package com.example.demo.core;
 
-import com.example.demo.api.CartDto;
 import com.example.demo.api.CatalogDto;
-import com.example.demo.assembler.CartAssembler;
 import com.example.demo.assembler.CatalogAssembler;
-import com.example.demo.core.data.Cart;
-import com.example.demo.core.data.CartRepository;
 import com.example.demo.core.data.Catalog;
 import com.example.demo.core.data.CatalogRepository;
+import com.example.demo.core.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class CatalogService {
+public  class CatalogService {
 
     private final CatalogRepository repository;
     private final CatalogAssembler assembler;

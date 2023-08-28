@@ -1,10 +1,13 @@
 package com.example.demo.core.data;
 
+import com.example.demo.core.ItemService;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import com.example.demo.api.CatalogType;
+
+import java.util.List;
 
 @Entity
 @Table(name= "catalog")
@@ -31,6 +34,10 @@ public class Catalog {
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
     private CatalogType type;
+
+    @OneToMany
+    @JoinColumn(name = "catalog_id")
+    private List<Item> items;
 
     public static Catalog newInstance(){
         return new Catalog();

@@ -78,6 +78,19 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet author="beveridj" id="create-catalog-item" >
+        <createTable tableName="catalog_item">
+            <column name="catalog_itm_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="catalog_item_pk"/>
+            </column>
+            <column name="catalog_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="catalog_item_fk" references="catalog(catalog_id)"/>
+            </column>
+            <column name="item_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="item_catalog_fk" references="item(item_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
     <changeSet  author="beveridj"  id="create-sequences">
         <createSequence sequenceName="cart_id_seq" startValue="1" incrementBy="1"/>
         <createSequence sequenceName="catalog_id_seq" startValue="1" incrementBy="1"/>

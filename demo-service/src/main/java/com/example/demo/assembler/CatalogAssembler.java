@@ -1,12 +1,8 @@
 package com.example.demo.assembler;
 
-import com.example.demo.api.CartDto;
 import com.example.demo.api.CatalogDto;
-import com.example.demo.core.data.Cart;
 import com.example.demo.core.data.Catalog;
 import org.springframework.stereotype.Component;
-
-import java.util.stream.Collectors;
 
 @Component
 public class CatalogAssembler {

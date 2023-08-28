@@ -1,9 +1,18 @@
 package com.example.demo.core.data;
 
+import com.example.demo.api.CatalogDto;
+import com.example.demo.assembler.CatalogAssembler;
+import com.example.demo.core.exception.NotFoundException;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "cart_item")

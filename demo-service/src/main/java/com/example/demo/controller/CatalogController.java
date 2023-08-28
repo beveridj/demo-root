@@ -1,9 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.api.CartDto;
 import com.example.demo.api.CatalogDto;
-import com.example.demo.core.CartService;
-import com.example.demo.core.exception.CatalogService;
+import com.example.demo.core.CatalogService;
+import com.example.demo.core.data.CartItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
