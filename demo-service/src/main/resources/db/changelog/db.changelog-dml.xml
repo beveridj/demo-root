@@ -4,98 +4,37 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet author="beveridj" id="create-item" >
-        <createTable tableName="item">
-            <column name="item_id" type="bigint">
-                <constraints primaryKey="true" nullable="false" primaryKeyName="item_pk"/>
-            </column>
-            <column name="name" type="text">
-                <constraints nullable="false"/>
-            </column>
-            <column name="description" type="text">
-                <constraints nullable="false"/>
-            </column>
-            <column name="price" type="decimal">
-                <constraints nullable="false"/>
-            </column>
-         </createTable>
+    <changeSet author="beveridj" id="populate-items">
+        <sql>
+            insert into public.item (item_id, name,description, price) values (1, 'Notched', 'Top notch item.', 20.00);
+            insert into public.item (item_id, name,description, price) values (2, 'THE SPECIAL', 'Something special.', 10.00);
+            insert into public.item (item_id, name,description, price) values (3, 'Junk Master','Hunk of junk.', 100.00);
+            commit;
+        </sql>
+        <rollback/>
     </changeSet>
-    <changeSet author="beveridj" id="create-customer" >
-        <createTable tableName="customer">
-            <column name="customer_id" type="bigint">
-                <constraints primaryKey="true" nullable="false" primaryKeyName="customer_pk"/>
-            </column>
-            <column name="first_name" type="text">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_name" type="text">
-                <constraints nullable="false"/>
-            </column>
-            <column name="address" type="text">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
+    <changeSet author="beveridj" id="populate-customers">
+         <sql>
+            insert into public.customer (customer_id, first_name, last_name, address) values (1,'Fred', 'Dortmund', '123 Tester Way, Testerville, TX');
+            insert into public.customer (customer_id, first_name, last_name, address) values (2,'Frances', 'Dortmund', '123 Tester Way, Testerville, TX');
+            insert into public.customer (customer_id, first_name, last_name, address) values (3,'Anna', 'Netrebko', '345 Tester Way, Testerville, TX');
+            insert into public.customer (customer_id, first_name, last_name, address) values (4,'Elina', 'Goranca', '789 Tester Way, Testerville, TX');
+            commit;
+        </sql>
+        <rollback/>
+     </changeSet>
+    <changeSet author="beveridj" id="populate-carts">
+        <sql>
+            insert into public.cart (cart_id, customer_id) values (1, 1);
+            commit;
+        </sql>
+        <rollback/>
     </changeSet>
-    <changeSet author="beveridj" id="create-cart" >
-        <createTable tableName="cart">
-            <column name="cart_id" type="bigint">
-                <constraints primaryKey="true" nullable="false" primaryKeyName="cart_pk"/>
-            </column>
-            <column name="customer_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="cart_customer_fk" references="customer(customer_id)"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="beveridj" id="create-catalog" >
-        <createTable tableName="catalog">
-            <column name="catalog_id" type="bigint">
-                <constraints primaryKey="true" nullable="false" primaryKeyName="catalog_pk"/>
-            </column>
-            <column name="name" type="text">
-                <constraints nullable="false"/>
-            </column>
-            <column name="description" type="text">
-                <constraints nullable="false"/>
-            </column>
-            <column name="type" type="text">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="beveridj" id="create-cart-item" >
-        <createTable tableName="cart_item">
-            <column name="cart_itm_id" type="bigint">
-                <constraints primaryKey="true" nullable="false" primaryKeyName="cart_item_pk"/>
-            </column>
-            <column name="cart_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="cart_item_cart_fk" references="cart(cart_id)"/>
-            </column>
-            <column name="item_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="cart_item_item_fk" references="item(item_id)"/>
-            </column>
-            <column name="quantity" type="int">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="beveridj" id="create-catalog-item" >
-        <createTable tableName="catalog_item">
-            <column name="catalog_itm_id" type="bigint">
-                <constraints primaryKey="true" nullable="false" primaryKeyName="catalog_item_pk"/>
-            </column>
-            <column name="catalog_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="catalog_item_fk" references="catalog(catalog_id)"/>
-            </column>
-            <column name="item_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="item_catalog_fk" references="item(item_id)"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet  author="beveridj"  id="create-sequences">
-        <createSequence sequenceName="cart_id_seq" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="catalog_id_seq" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="item_id_seq" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="cart_item_id_seq" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="customer_id_seq" startValue="1" incrementBy="1"/>
+    <changeSet author="beveridj" id="populate-catalogs">
+        <sql>
+            insert into public.catalog (catalog_id, name, description, type) values (1, 'Super Summer Fun', 'Lot''s of super fun stuff for Summer', 'SUMMER');
+            commit;
+        </sql>
+        <rollback/>
     </changeSet>
 </databaseChangeLog>
