@@ -78,5 +78,11 @@
             </column>
         </createTable>
     </changeSet>
-
+    <changeSet  author="beveridj"  id="create-sequences">
+        <createSequence sequenceName="cart_id_seq" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="catalog_id_seq" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="item_id_seq" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="cart_item_id_seq" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="customer_id_seq" startValue="1" incrementBy="1"/>
+    </changeSet>
 </databaseChangeLog>

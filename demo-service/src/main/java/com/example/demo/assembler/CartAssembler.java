@@ -10,12 +10,10 @@ import java.util.stream.Collectors;
 public class CartAssembler {
 
     private final CustomerAssembler customerAssembler;
-    private final CartAssembler cartAssembler;
     private final CartItemAssembler cartItemAssembler;
 
-    public CartAssembler(CustomerAssembler aCustomerAssembler, CartAssembler aCartAssembler, CartItemAssembler aCartItemAssembler) {
+    public CartAssembler(CustomerAssembler aCustomerAssembler, CartItemAssembler aCartItemAssembler) {
         customerAssembler = aCustomerAssembler;
-        cartAssembler = aCartAssembler;
         cartItemAssembler = aCartItemAssembler;
     }
 
@@ -39,7 +37,7 @@ public class CartAssembler {
         return entity
                 .setId(dto.getId())
                 .setCustomerId(dto.getCustomerId())
-                .setCustomer(new CustomerAssembler().disassemble(dto.getCustomer()));
+                .setCustomer(customerAssembler.disassemble(dto.getCustomer()));
     }
 
 }
