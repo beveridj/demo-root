@@ -43,6 +43,7 @@ public class CartItemService {
             throw new NotFoundException();
         if(! cartRepository.existsById(aCartItem.getCartId()))
             throw new NotFoundException();
+
         CartItem cartItem = assembler.disassemble(aCartItem);
         cartItem = repository.save(cartItem);
         return assembler.assemble(cartItem);

@@ -16,13 +16,10 @@ public class CatalogItemAssembler {
         CatalogItemDto dto = new CatalogItemDto();
         dto.setId(entity.getId())
                 .setItemId(entity.getItemId())
-                .setCatalogId(entity.getCatalogId());
- // TODO this smells. Should be able to use Optional functionally somehow
-        if(entity.getItem() != null)
-            dto.setItem(itemAssembler.assemble(entity.getItem()));
-        if(entity.getCatalog() != null)
-            dto.setCatalog(catalogAssembler.assemble(entity.getCatalog()));
-        return dto;
+                .setCatalogId(entity.getCatalogId())
+                .setCatalog(entity.getCatalog() != null ? catalogAssembler.assemble(entity.getCatalog()) : null)
+                .setItem(entity.getItem() != null ? itemAssembler.assemble(entity.getItem()) : null);
+         return dto;
     }
 
     public CatalogItem disassemble(CatalogItemDto dto) {
@@ -33,12 +30,9 @@ public class CatalogItemAssembler {
     public CatalogItem disassembleInto(CatalogItemDto dto, CatalogItem entity) {
         entity.setId(dto.getId())
                 .setItemId(dto.getItemId())
-                .setCatalogId(dto.getCatalogId());
-//    TODO on create, DTO(JSON) will not include an Item or a Catalog. How can an Optional be incorporated?
-        if(dto.getItem() != null)
-            entity.setItem(itemAssembler.disassemble(dto.getItem()));
-        if(dto.getCatalog() != null)
-            entity.setCatalog(catalogAssembler.disassemble(dto.getCatalog()));
+                .setCatalogId(dto.getCatalogId())
+                .setItem(dto.getItem() != null ? itemAssembler.disassemble(dto.getItem()) : null)
+                .setCatalog(dto.getCatalog() != null ? catalogAssembler.disassemble(dto.getCatalog()) : null);
         return entity;
     }
 

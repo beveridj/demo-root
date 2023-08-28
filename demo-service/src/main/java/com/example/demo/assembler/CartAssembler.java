@@ -17,7 +17,8 @@ public class CartAssembler {
         cartItemAssembler = aCartItemAssembler;
     }
 
-    public CartDto assemble(Cart entity) {
+// TODO this smells; functionality
+  public CartDto assemble(Cart entity) {
         CartDto cart = new CartDto()
                 .setId(entity.getId())
                 .setCustomerId(entity.getCustomerId());
