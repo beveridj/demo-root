@@ -18,14 +18,16 @@ public class CartAssembler {
     }
 
     public CartDto assemble(Cart entity) {
-        return new CartDto()
+        CartDto cart = new CartDto()
                 .setId(entity.getId())
-                .setCustomerId(entity.getCustomerId())
-                .setCustomer(customerAssembler.assemble(entity.getCustomer()))
-                .setCartItems(entity.getCartItems().stream()
+                .setCustomerId(entity.getCustomerId());
+        if(entity.getCustomer() != null)
+                cart.setCustomer(customerAssembler.assemble(entity.getCustomer()));
+        if(entity.getCartItems() != null)
+            cart.setCartItems(entity.getCartItems().stream()
                              .map(cartItemAssembler::assemble)
-                            .collect(Collectors.toList())
-                );
+                            .collect(Collectors.toList()));
+        return cart;
     }
 
     public Cart disassemble(CartDto dto) {
@@ -36,8 +38,7 @@ public class CartAssembler {
     public Cart disassembleInto(CartDto dto, Cart entity) {
         return entity
                 .setId(dto.getId())
-                .setCustomerId(dto.getCustomerId())
-                .setCustomer(customerAssembler.disassemble(dto.getCustomer()));
+                .setCustomerId(dto.getCustomerId());
     }
 
 }

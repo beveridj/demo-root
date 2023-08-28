@@ -36,4 +36,4 @@ public class CatalogItem {
     }
 
 }
-
+// TODO how could this be set up with a composite primary key?

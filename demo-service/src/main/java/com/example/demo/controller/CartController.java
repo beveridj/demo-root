@@ -29,6 +29,11 @@ public class CartController {
         return service.create(aCart);
     }
 
+    @PutMapping("/{cartId}")
+    public CartDto update(@PathVariable ("cartId") Long cartId, @RequestBody CartDto aCart){
+        return service.update(cartId, aCart);
+    }
+
     @DeleteMapping("/{cartId}")
     public void delete (@PathVariable ("cartId") Long cartId){
         service.delete(cartId);
