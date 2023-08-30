@@ -35,4 +35,9 @@ public class CatalogController {
         service.delete(catalogId);
     }
 
+    @PutMapping("/{catalogId}")
+    public CatalogDto update (@PathVariable ("catalogId") Long catalogId, @RequestBody CatalogDto aCatalogDto){
+        return service.update(catalogId, aCatalogDto);
+    }
+
 }

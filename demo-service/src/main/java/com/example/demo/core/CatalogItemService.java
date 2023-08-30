@@ -1,7 +1,9 @@
 package com.example.demo.core;
 
+import com.example.demo.api.CatalogDto;
 import com.example.demo.api.CatalogItemDto;
 import com.example.demo.assembler.CatalogItemAssembler;
+import com.example.demo.core.data.Catalog;
 import com.example.demo.core.data.CatalogItem;
 import com.example.demo.core.data.CatalogItemRepository;
 import com.example.demo.core.exception.NotFoundException;
@@ -44,6 +46,14 @@ public class CatalogItemService {
             throw new NotFoundException();
         };
         repository.deleteById(anId);
+    }
+
+    public CatalogItemDto update(Long aCatalogItemId, CatalogItemDto aCatalogItemDto) {
+        if(! repository.existsById(aCatalogItemId)){
+            throw new NotFoundException();
+        };
+        CatalogItem catalogItem = assembler.disassemble(aCatalogItemDto);
+        return assembler.assemble(repository.save(catalogItem));
     }
 
 }

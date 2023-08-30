@@ -34,4 +34,10 @@ public class ItemController {
     public void delete (@PathVariable ("itemId") Long itemId){
         service.delete(itemId);
     }
+
+    @PutMapping("/{itemId}")
+    public ItemDto update(@PathVariable("itemId") Long itemId, @RequestBody ItemDto anItemDto){
+        return service.update(itemId, anItemDto);
+    }
+
 }

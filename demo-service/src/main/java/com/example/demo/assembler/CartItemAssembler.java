@@ -18,9 +18,8 @@ public class CartItemAssembler {
         dto.setId(entity.getId())
                 .setQuantity(entity.getQuantity())
                 .setItemId(entity.getItemId())
-                .setCartId(entity.getCartId());
-        if(entity.getItem() != null)
-            dto.setItem(itemAssembler.assemble(entity.getItem()));
+                .setCartId(entity.getCartId())
+                .setItem(entity.getItem() != null ? itemAssembler.assemble(entity.getItem()) : null);
         return dto;
     }
 
@@ -33,11 +32,9 @@ public class CartItemAssembler {
         entity.setId(dto.getId())
                 .setItemId(dto.getItemId())
                 .setCartId(dto.getCartId())
-                .setQuantity(dto.getQuantity());
-//    TODO on create, DTO(JSON) will not include an Item. How can an Optional be incorporated?
-        if(dto.getItem() != null)
-            entity.setItem(itemAssembler.disassemble(dto.getItem()));
-         return entity;
+                .setQuantity(dto.getQuantity())
+                .setItem(dto.getItem() != null ? itemAssembler.disassemble(dto.getItem()) : null);
+          return entity;
 
     }
 }

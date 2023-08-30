@@ -2,6 +2,7 @@ package com.example.demo.core;
 
 import com.example.demo.api.ItemDto;
 import com.example.demo.assembler.ItemAssembler;
+import com.example.demo.core.data.Customer;
 import com.example.demo.core.data.Item;
 import com.example.demo.core.data.ItemRepository;
 import com.example.demo.core.exception.NotFoundException;
@@ -46,4 +47,13 @@ public class ItemService {
         };
         repository.deleteById(anId);
     }
+
+    public ItemDto update(Long anItemId, ItemDto anItemDto) {
+        if (!repository.existsById(anItemId)) {
+            throw new NotFoundException();
+        }
+        Item item = assembler.disassemble(anItemDto);
+        return assembler.assemble(repository.save(item));
+    }
+
 }

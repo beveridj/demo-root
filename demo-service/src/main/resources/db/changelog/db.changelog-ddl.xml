@@ -68,10 +68,10 @@
                 <constraints primaryKey="true" nullable="false" primaryKeyName="cart_item_pk"/>
             </column>
             <column name="cart_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="cart_item_cart_fk" references="cart(cart_id)"/>
+                <constraints nullable="false" foreignKeyName="cart_item_cart_fk" references="cart(cart_id)" />
             </column>
             <column name="item_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="cart_item_item_fk" references="item(item_id)"/>
+                <constraints nullable="false" foreignKeyName="cart_item_item_fk" references="item(item_id)" />
             </column>
             <column name="quantity" type="int">
                 <constraints nullable="false"/>
@@ -87,15 +87,16 @@
                 <constraints nullable="false" foreignKeyName="catalog_item_fk" references="catalog(catalog_id)"/>
             </column>
             <column name="item_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="item_catalog_fk" references="item(item_id)"/>
+                <constraints nullable="false" foreignKeyName="item_catalog_fk" references="item(item_id)" />
             </column>
         </createTable>
     </changeSet>
     <changeSet  author="beveridj"  id="create-sequences">
-        <createSequence sequenceName="cart_id_seq" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="catalog_id_seq" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="item_id_seq" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="cart_item_id_seq" startValue="1" incrementBy="1"/>
-        <createSequence sequenceName="customer_id_seq" startValue="1" incrementBy="1"/>
+        <createSequence sequenceName="cart_id_seq" startValue="100" incrementBy="1"/>
+        <createSequence sequenceName="catalog_id_seq" startValue="100" incrementBy="1"/>
+        <createSequence sequenceName="item_id_seq" startValue="100" incrementBy="1"/>
+        <createSequence sequenceName="cart_item_id_seq" startValue="100" incrementBy="1"/>
+        <createSequence sequenceName="customer_id_seq" startValue="100" incrementBy="1"/>
+        <createSequence sequenceName="catalog_item_id_seq" startValue="100" incrementBy="1"/>
     </changeSet>
 </databaseChangeLog>

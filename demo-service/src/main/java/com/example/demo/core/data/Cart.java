@@ -19,7 +19,7 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cart_id")
     private List<CartItem> cartItems;
 

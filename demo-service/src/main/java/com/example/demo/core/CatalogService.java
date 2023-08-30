@@ -2,6 +2,7 @@ package com.example.demo.core;
 
 import com.example.demo.api.CatalogDto;
 import com.example.demo.assembler.CatalogAssembler;
+import com.example.demo.core.data.CartItem;
 import com.example.demo.core.data.Catalog;
 import com.example.demo.core.data.CatalogRepository;
 import com.example.demo.core.exception.NotFoundException;
@@ -34,16 +35,24 @@ public  class CatalogService {
     }
 
     public CatalogDto create(CatalogDto anOrder){
-        Catalog cata = assembler.disassemble(anOrder);
-        cata = repository.save(cata);
-        return assembler.assemble(cata);
+        Catalog catalog = assembler.disassemble(anOrder);
+        catalog = repository.save(catalog);
+        return assembler.assemble(catalog);
     }
 
     public void delete(Long anId){
         if(! repository.existsById(anId)){
             throw new NotFoundException();
-        };
+        }
         repository.deleteById(anId);
+    }
+
+    public CatalogDto update(Long aCatalogId, CatalogDto aCatalogDto) {
+        if(! repository.existsById(aCatalogId)){
+            throw new NotFoundException();
+        };
+        Catalog catalog = assembler.disassemble(aCatalogDto);
+        return assembler.assemble(repository.save(catalog));
     }
 
 }

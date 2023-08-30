@@ -19,9 +19,9 @@ public class CartItemController {
         return service.findAll();
     }
 
-    @GetMapping("/{cartId}")
-    public CartItemDto findById(@PathVariable("cartId") Long cartId){
-        return service.findById(cartId);
+    @GetMapping("/{cartItemId}")
+    public CartItemDto findById(@PathVariable("cartItemId") Long cartItemId){
+        return service.findById(cartItemId);
     }
 
     @PostMapping("")
@@ -29,8 +29,11 @@ public class CartItemController {
         return service.create(anItem);
     }
 
-    @DeleteMapping("/{cartId}")
-    public void delete (@PathVariable ("cartId") Long cartId){
-        service.delete(cartId);
+    @DeleteMapping("/{cartItemId}")
+    public void delete (@PathVariable ("cartItemId") Long cartItemId){
+        service.delete(cartItemId);
     }
+
+    @PutMapping("/{cartItemId}")
+    public CartItemDto update(@PathVariable("cartItemId") Long cartItemId, @RequestBody CartItemDto cartItemDto){ return service.update(cartItemId, cartItemDto);}
 }

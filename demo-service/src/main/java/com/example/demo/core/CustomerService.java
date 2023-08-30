@@ -49,4 +49,13 @@ public class CustomerService {
         };
         repository.deleteById(anId);
     }
+
+    public CustomerDto update(Long aCustomerId, CustomerDto aCustomerDto){
+        if(! repository.existsById(aCustomerId)) {
+            throw new NotFoundException();
+        }
+        Customer customer = assembler.disassemble(aCustomerDto);
+        return assembler.assemble(repository.save(customer));
+    }
+
 }

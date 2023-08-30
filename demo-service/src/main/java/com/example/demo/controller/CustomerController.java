@@ -35,4 +35,7 @@ public class CustomerController {
     public void delete (@PathVariable ("customerId") Long customerId){
         service.delete(customerId);
     }
+
+    @PutMapping("/{customerId}")
+    public CustomerDto update(@PathVariable("customerId") Long customerId, @RequestBody CustomerDto aCustomer){return service.update(customerId, aCustomer);}
 }

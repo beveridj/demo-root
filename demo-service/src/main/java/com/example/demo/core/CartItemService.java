@@ -37,7 +37,6 @@ public class CartItemService {
                 .orElseThrow(NotFoundException::new);
     }
 
-//    TODO what is the functional way to check for existence of entities before saving?
     public CartItemDto create(CartItemDto aCartItem){
         if(! itemRepository.existsById(aCartItem.getItemId()))
             throw new NotFoundException();
@@ -55,4 +54,13 @@ public class CartItemService {
         };
         repository.deleteById(anId);
     }
+
+    public CartItemDto update(Long aCartItemId, CartItemDto aCartItemDto) {
+        if(! repository.existsById(aCartItemId)){
+            throw new NotFoundException();
+        };
+        CartItem cartItem = assembler.disassemble(aCartItemDto);
+         return assembler.assemble(repository.save(cartItem));
+    }
+
 }
