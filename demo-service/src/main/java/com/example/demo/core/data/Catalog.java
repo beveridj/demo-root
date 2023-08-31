@@ -35,8 +35,8 @@ public class Catalog {
     @Enumerated(EnumType.STRING)
     private CatalogType type;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "catalog_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "catalog")
+//    @JoinColumn(name = "catalog_id")
     private List<CatalogItem> items;
 
     public static Catalog newInstance(){

@@ -42,7 +42,7 @@
                 <constraints primaryKey="true" nullable="false" primaryKeyName="cart_pk"/>
             </column>
             <column name="customer_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="cart_customer_fk" references="customer(customer_id)"/>
+                <constraints nullable="false" foreignKeyName="cart_customer_fk" references="customer(customer_id)" deleteCascade="true"/>
             </column>
         </createTable>
     </changeSet>
@@ -68,10 +68,10 @@
                 <constraints primaryKey="true" nullable="false" primaryKeyName="cart_item_pk"/>
             </column>
             <column name="cart_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="cart_item_cart_fk" references="cart(cart_id)" />
+                <constraints nullable="false" foreignKeyName="cart_item_cart_fk" references="cart(cart_id)" deleteCascade="true"/>
             </column>
             <column name="item_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="cart_item_item_fk" references="item(item_id)" />
+                <constraints nullable="false" foreignKeyName="cart_item_item_fk" references="item(item_id)" deleteCascade="true"/>
             </column>
             <column name="quantity" type="int">
                 <constraints nullable="false"/>
@@ -84,10 +84,10 @@
                 <constraints primaryKey="true" nullable="false" primaryKeyName="catalog_item_pk"/>
             </column>
             <column name="catalog_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="catalog_item_fk" references="catalog(catalog_id)"/>
+                <constraints nullable="false" foreignKeyName="catalog_item_fk" references="catalog(catalog_id)" deleteCascade="true"/>
             </column>
             <column name="item_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="item_catalog_fk" references="item(item_id)" />
+                <constraints nullable="false" foreignKeyName="item_catalog_fk" references="item(item_id)" deleteCascade="true"/>
             </column>
         </createTable>
     </changeSet>
