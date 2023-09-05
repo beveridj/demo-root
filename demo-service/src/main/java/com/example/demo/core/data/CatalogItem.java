@@ -20,14 +20,10 @@ public class CatalogItem {
     @Column(name = "catalog_id")
     private Long catalogId;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "catalog_id", referencedColumnName = "catalog_id", insertable = false, updatable = false)
-    private Catalog catalog;
-
     @Column(name = "item_id")
     private Long itemId;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "item_id", referencedColumnName = "item_id", insertable = false, updatable = false)
     private Item item;
 

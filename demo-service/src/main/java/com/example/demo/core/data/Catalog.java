@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import com.example.demo.api.CatalogType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,11 +36,12 @@ public class Catalog {
     @Enumerated(EnumType.STRING)
     private CatalogType type;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "catalog")
-//    @JoinColumn(name = "catalog_id")
-    private List<CatalogItem> items;
+    @OneToMany(orphanRemoval = true)
+    @JoinColumn(name = "catalog_id", referencedColumnName = "catalog_id", insertable = false, updatable = false)
+    private List<CatalogItem> items = new ArrayList<>();
 
     public static Catalog newInstance(){
         return new Catalog();
     }
+
 }

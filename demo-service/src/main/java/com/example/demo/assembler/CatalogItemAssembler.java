@@ -17,7 +17,6 @@ public class CatalogItemAssembler {
         dto.setId(entity.getId())
                 .setItemId(entity.getItemId())
                 .setCatalogId(entity.getCatalogId())
-                .setCatalog(entity.getCatalog() != null ? catalogAssembler.assemble(entity.getCatalog()) : null)
                 .setItem(entity.getItem() != null ? itemAssembler.assemble(entity.getItem()) : null);
          return dto;
     }
@@ -31,8 +30,7 @@ public class CatalogItemAssembler {
         entity.setId(dto.getId())
                 .setItemId(dto.getItemId())
                 .setCatalogId(dto.getCatalogId())
-                .setItem(dto.getItem() != null ? itemAssembler.disassemble(dto.getItem()) : null)
-                .setCatalog(dto.getCatalog() != null ? catalogAssembler.disassemble(dto.getCatalog()) : null);
+                .setItem(dto.getItem() != null ? itemAssembler.disassemble(dto.getItem()) : null);
         return entity;
     }
 

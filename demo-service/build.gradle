@@ -23,6 +23,7 @@ repositories {
 
 dependencies {
 	implementation project(':demo-api')
+	implementation project(':demo-client')
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.liquibase:liquibase-core'
@@ -30,7 +31,17 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'org.glassfish.jersey.core:jersey-client:3.0.2'
+	implementation 'org.glassfish.jersey.inject:jersey-hk2:3.0.2'
+	implementation 'org.glassfish.jersey.media:jersey-media-json-binding:3.0.2'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'org.hamcrest:hamcrest:2.2'
 }
+
 
 tasks.named('test') {
 	useJUnitPlatform()

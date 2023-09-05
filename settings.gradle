@@ -1,2 +1,2 @@
 rootProject.name = 'demo-root'
-include('demo-api','demo-service')
+include('demo-api', 'demo-service', 'demo-client')
